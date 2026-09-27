@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+/* Atelier design system — original tokens inspired by luxury editorial
+   principles (airy rhythm, serif display + sans body, neutrals + one
+   restrained accent). No third-party brand assets copied. */
+
+:root {
+  --background: var(--color-canvas);
+  --foreground: var(--color-ink);
+}
+
+@theme {
+  --color-canvas: #faf9f6;
+  --color-surface: #ffffff;
+  --color-ink: #141412;
+  --color-muted: #6e6a61;
+  --color-line: #e7e2d8;
+  --color-accent: #7c5c2a;
+  --color-accent-ink: #ffffff;
+
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-ink);
+
+  --font-display: var(--font-display), "Georgia", "Times New Roman", serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --container-atelier: 80rem;
+  --radius-atelier: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #121210;
+    --color-surface: #1a1a17;
+    --color-ink: #f2efe8;
+    --color-muted: #a8a29a;
+    --color-line: #2c2b27;
+    --color-accent: #c9a86a;
+    --color-accent-ink: #141412;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Layout */
+  .container-atelier {
+    width: 100%;
+    max-width: var(--container-atelier);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-atelier {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-atelier {
+      padding-inline: 2rem;
+    }
+  }
+
+  .section {
+    padding-block: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-block: 5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 7rem;
+    }
+  }
+
+  .section-sm {
+    padding-block: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-sm {
+      padding-block: 3rem;
+    }
+  }
+
+  /* Typography */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .h-display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    text-wrap: balance;
+    font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  }
+
+  .h-section {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-wrap: balance;
+    font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
+  }
+
+  .body-muted {
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .link-underline {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 200ms ease;
+  }
+
+  .link-underline:hover {
+    text-decoration-color: currentColor;
+  }
+
+  /* Buttons — rectangular minimal, uppercase labels */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.75rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-radius: var(--radius-atelier);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      opacity 200ms ease;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    border-color: var(--color-ink);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    opacity: 0.88;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 25%, transparent);
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-ink);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: transparent;
+    padding-inline: 0.5rem;
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Surfaces */
+  .hairline {
+    border-color: var(--color-line);
+  }
+
+  .card-product {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-atelier);
+    overflow: hidden;
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .card-product:hover {
+    border-color: color-mix(in srgb, var(--color-ink) 25%, var(--color-line));
+  }
+
+  .card-product-media {
+    aspect-ratio: 4 / 5;
+    background: var(--color-canvas);
+    overflow: hidden;
+  }
+
+  .card-product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .card-product:hover .card-product-media img {
+    transform: scale(1.03);
+  }
+
+  .input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-atelier);
+  }
+
+  .input::placeholder {
+    color: var(--color-muted);
+  }
+
+  /* Responsive product grid primitive */
+  .grid-product {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    .grid-product {
+      gap: 2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .grid-product {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
